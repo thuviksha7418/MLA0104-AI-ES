@@ -1,0 +1,24 @@
+def alphabeta(tree, maximizing, alpha, beta):
+    if isinstance(tree, int):
+        return tree
+
+    if maximizing:
+        value = float("-inf")
+        for child in tree:
+            value = max(value, alphabeta(child, False, alpha, beta))
+            alpha = max(alpha, value)
+            if alpha >= beta:
+                break
+        return value
+
+    value = float("inf")
+    for child in tree:
+        value = min(value, alphabeta(child, True, alpha, beta))
+        beta = min(beta, value)
+        if alpha >= beta:
+            break
+    return value
+
+tree = [[3, 5], [2, 9]]
+
+print("Best value:", alphabeta(tree, True, float("-inf"), float("inf")))

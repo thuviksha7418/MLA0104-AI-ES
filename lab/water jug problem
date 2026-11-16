@@ -1,0 +1,38 @@
+from collections import deque
+
+a = int(input("Capacity of jug 1: "))
+b = int(input("Capacity of jug 2: "))
+target = int(input("Target amount: "))
+
+queue = deque([((0, 0), [(0, 0)])])
+visited = set()
+found = False
+
+while queue:
+    (x, y), path = queue.popleft()
+
+    if (x, y) in visited:
+        continue
+    visited.add((x, y))
+
+    if x == target or y == target:
+        for state in path:
+            print(state)
+        found = True
+        break
+
+    pour1 = min(x, b - y)
+    pour2 = min(y, a - x)
+
+    states = [
+        (a, y), (x, b), (0, y), (x, 0),
+        (x - pour1, y + pour1),
+        (x + pour2, y - pour2)
+    ]
+
+    for state in states:
+        if state not in visited:
+            queue.append((state, path + [state]))
+
+if not found:
+    print("Target cannot be measured")

@@ -1,0 +1,37 @@
+import heapq
+
+graph = {
+    'A': [('B', 1), ('C', 4)],
+    'B': [('D', 2), ('E', 5)],
+    'C': [('F', 3)],
+    'D': [], 'E': [('F', 1)], 'F': []
+}
+
+h = {'A': 5, 'B': 4, 'C': 2, 'D': 3, 'E': 1, 'F': 0}
+
+start = input("Start node: ").upper()
+goal = input("Goal node: ").upper()
+pq = [(h.get(start, 0), 0, start, [start])]
+best = {start: 0}
+
+while pq:
+    _, cost, node, path = heapq.heappop(pq)
+
+    if node == goal:
+        print("Path:", path)
+        print("Cost:", cost)
+        break
+
+    if cost != best.get(node):
+        continue
+
+    for nxt, weight in graph.get(node, []):
+        new_cost = cost + weight
+        if new_cost < best.get(nxt, float("inf")):
+            best[nxt] = new_cost
+            heapq.heappush(
+                pq, (new_cost + h.get(nxt, 0),
+                     new_cost, nxt, path + [nxt])
+            )
+else:
+    print("No path found")
