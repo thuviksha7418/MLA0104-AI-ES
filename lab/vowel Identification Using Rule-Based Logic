@@ -1,0 +1,10 @@
+text = input("Enter a sentence: ").lower()
+vowels = "aeiou"
+count = 0
+
+for character in text:
+    if character in vowels:
+        print(character)
+        count += 1
+
+print("Total vowels:", count)
