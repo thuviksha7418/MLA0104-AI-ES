@@ -1,0 +1,32 @@
+import heapq
+
+graph = {
+    'A': [('B', 1), ('C', 4)],
+    'B': [('D', 2), ('E', 5)],
+    'C': [('F', 3)],
+    'D': [], 'E': [('F', 1)], 'F': []
+}
+
+start = input("Start node: ").upper()
+goal = input("Goal node: ").upper()
+pq = [(0, start, [start])]
+visited = set()
+
+while pq:
+    cost, node, path = heapq.heappop(pq)
+    if node in visited:
+        continue
+    visited.add(node)
+
+    if node == goal:
+        print("Path:", path)
+        print("Cost:", cost)
+        break
+
+    for nxt, weight in graph.get(node, []):
+        if nxt not in visited:
+            heapq.heappush(
+                pq, (cost + weight, nxt, path + [nxt])
+            )
+else:
+    print("No path found")
