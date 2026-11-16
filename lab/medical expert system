@@ -1,0 +1,15 @@
+fever = input("Do you have fever? ").lower()
+cough = input("Do you have cough? ").lower()
+sneeze = input("Do you have sneezing? ").lower()
+pain = input("Do you have body pain? ").lower()
+
+if fever == "yes" and pain == "yes":
+    print("Possible flu-like symptoms")
+elif sneeze == "yes" and cough == "yes" and fever == "no":
+    print("Possible cold-like symptoms")
+elif cough == "yes":
+    print("Cough symptom detected")
+else:
+    print("No matching rule found")
+
+print("This program is educational, not a medical diagnosis.")

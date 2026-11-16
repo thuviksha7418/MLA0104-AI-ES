@@ -1,0 +1,11 @@
+birds = ["sparrow", "pigeon", "crow", "eagle", "penguin", "ostrich"]
+cannot_fly = ["penguin", "ostrich"]
+
+bird = input("Enter bird name: ").lower()
+
+if bird not in birds:
+    print("Bird not found in knowledge base")
+elif bird in cannot_fly:
+    print(bird, "cannot fly")
+else:
+    print(bird, "can fly")

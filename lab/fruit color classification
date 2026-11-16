@@ -1,0 +1,14 @@
+color = input("Enter fruit color: ").lower()
+
+if color == "red":
+    print("Apple or strawberry")
+elif color == "yellow":
+    print("Banana")
+elif color == "orange":
+    print("Orange")
+elif color == "green":
+    print("Green apple or lime")
+elif color == "purple":
+    print("Grapes")
+else:
+    print("Unknown fruit color")

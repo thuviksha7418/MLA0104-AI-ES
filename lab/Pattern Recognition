@@ -1,0 +1,12 @@
+numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
+
+if len(numbers) < 2:
+    print("Enter at least two numbers")
+elif all(numbers[i] < numbers[i + 1] for i in range(len(numbers) - 1)):
+    print("Increasing pattern")
+elif all(numbers[i] > numbers[i + 1] for i in range(len(numbers) - 1)):
+    print("Decreasing pattern")
+elif all(x == numbers[0] for x in numbers):
+    print("Constant pattern")
+else:
+    print("Irregular pattern")

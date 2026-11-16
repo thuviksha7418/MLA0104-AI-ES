@@ -1,0 +1,24 @@
+parent = {
+    "Ravi": ["Anu", "Kumar"],
+    "Meena": ["Anu", "Kumar"],
+    "Anu": ["Diya"]
+}
+
+def is_parent(p, c):
+    return c in parent.get(p, [])
+
+def is_grandparent(g, c):
+    for p in parent.get(g, []):
+        if is_parent(p, c):
+            return True
+    return False
+
+p = input("Enter first person: ").title()
+c = input("Enter second person: ").title()
+
+if is_parent(p, c):
+    print(p, "is a parent of", c)
+elif is_grandparent(p, c):
+    print(p, "is a grandparent of", c)
+else:
+    print("No relationship found")
