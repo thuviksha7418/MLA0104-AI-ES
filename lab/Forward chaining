@@ -1,0 +1,23 @@
+rules = [
+    ({"fever", "cough"}, "possible_flu"),
+    ({"possible_flu", "body_pain"}, "needs_rest"),
+    ({"needs_rest"}, "recommend_consultation")
+]
+
+facts = set(
+    input("Enter facts separated by commas: ")
+    .lower().replace(" ", "").split(",")
+)
+
+changed = True
+
+while changed:
+    changed = False
+
+    for conditions, conclusion in rules:
+        if conditions.issubset(facts) and conclusion not in facts:
+            facts.add(conclusion)
+            print("Derived:", conclusion)
+            changed = True
+
+print("Final facts:", sorted(facts))

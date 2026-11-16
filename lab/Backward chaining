@@ -1,0 +1,26 @@
+rules = {
+    "possible_flu": [{"fever", "cough"}],
+    "needs_rest": [{"possible_flu", "body_pain"}]
+}
+
+facts = set(
+    input("Enter known facts separated by commas: ")
+    .lower().replace(" ", "").split(",")
+)
+
+def prove(goal):
+    if goal in facts:
+        return True
+
+    for conditions in rules.get(goal, []):
+        if all(prove(condition) for condition in conditions):
+            return True
+
+    return False
+
+goal = input("Enter goal to prove: ").lower()
+
+if prove(goal):
+    print("Goal proved")
+else:
+    print("Goal cannot be proved")

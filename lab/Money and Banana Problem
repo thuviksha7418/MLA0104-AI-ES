@@ -1,0 +1,12 @@
+monkey = input("Monkey location (door/center): ").lower()
+box = input("Box location (door/center): ").lower()
+banana = input("Banana location (center): ").lower()
+
+if monkey != box:
+    print("1. Move to the box")
+
+if box != banana:
+    print("2. Push the box under the banana")
+
+print("3. Climb onto the box")
+print("4. Take the banana")
